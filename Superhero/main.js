@@ -2,8 +2,8 @@ var canvas = new fabric.Canvas('myCanvas');
 player_x= 10;
 player_y= 10;
 
-block_width= 30;
-block_height= 30;
+block_width= 150;
+block_height= 150;
 
 player_img="";
 block_img= "";
@@ -26,7 +26,7 @@ function update_player(){
 
 function make_blocks(get_image){
     fabric.Image.fromURL(get_image , function(add){
-        block_img= img;
+        block_img= add;
 
         block_img.scaleToWidth(block_width);
         block_img.scaleToHeight(block_height);
@@ -37,4 +37,97 @@ function make_blocks(get_image){
         });
         canvas.add(block_img);
     })
+}
+
+window.addEventListener("keydown", my_kedown);
+function my_kedown(e){
+    keypressed = e.keyCode;
+    console.log(keypressed);
+    if(e.shiftKey == true && keypressed == '80'){
+        console.log("P is pressed with Shift");
+        block_width = block_width + 10;
+        block_height = block_height + 10;
+        document.getElementById("present_width").innerHTML=block_width;
+        document.getElementById("present_height").innerHTML=block_height;
+      }
+      if(e.shiftKey == true && keypressed == '77'){
+          console.log("M is pressed with Shift");
+          block_height = block_height - 10;
+          block_width = block_width - 10;
+          document.getElementById("present_width").innerHTML=block_width;
+          document.getElementById("present_height").innerHTML=block_height;
+      }
+    if(keypressed == '38'){
+        up();
+        console.log("up");
+    } 
+    if(keypressed == '40'){
+        down();
+        console.log("down");
+    }
+    if(keypressed == '37'){
+        left();
+        console.log("left");
+    }
+if(keypressed == '39'){
+        right();
+        console.log("right");
+    }
+    if(keypressed == '72'){
+        make_blocks("spiderman_face.png");
+        console.log("H");
+    }
+    if(keypressed == '66'){
+        make_blocks("hulkd_body.png");
+        console.log("B");
+    }
+    if(keypressed == '76'){
+        make_blocks("captain_america_left_hand.png");
+        console.log("L");
+    }
+    if(keypressed == '82'){
+        make_blocks("thor_right_hand.png");
+        console.log("R");
+    }
+    if(keypressed == '70'){
+        make_blocks("ironman_legs.png");
+        console.log("F");
+    }
+}
+
+function up(){
+    if(player_y>10){
+        player_y = player_y - 20;
+        console.log("The height of the blocks is " + block_height);
+        console.log("After pressing the up arrow the X is " + player_x +" and Y is " + player_y);
+        canvas.remove(player_img);
+        update_player();
+    }
+}
+function down(){
+    if(player_y<460){
+        player_y=player_y+20;
+        console.log("The height of the blocks is " + block_height);
+        console.log("After pressing the up arrow the X is " + player_x +" and Y is " + player_y);
+        canvas.remove(player_img);
+        update_player();
+    }
+}
+function left(){
+    if(player_x>10){
+        player_x = player_x-20;
+        console.log("The width of the blocks is " + block_width);
+        console.log("After pressing the up arrow the X is " + player_x +" nd Y is " + player_y);
+        canvas.remove(player_img);
+        update_player();
+    }
+}
+function right(){
+    if(player_x<870){
+        player_x = player_x+20;
+        console.log("The width of the blocks is " + block_width);
+        console.log("After pressing the up arrow the X is " + player_x +" and Y is " + player_y);
+        canvas.remove(player_img);
+        update_player();
+    }
 }
