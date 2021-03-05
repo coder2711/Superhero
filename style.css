@@ -21,10 +21,7 @@ h3
 {
 	display: inline-block;
 }
-span
-{
-	color : red;	
-}
+
 a
 {
 	text-decoration: none;
@@ -38,4 +35,8 @@ a
 	width: 600px;
 	border-radius: 10px;
 	margin-bottom: 10px;
+}
+span
+{
+	color: blue;	
 }
